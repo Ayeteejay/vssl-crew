@@ -1,35 +1,35 @@
 {
-  "name": "vssl-brand",
-  "version": "0.1.0",
+  "name": "vssl-crew-backend",
   "private": true,
-  "description": "Backend for VSSL Brand site",
-  "license": "MIT",
-  "author": {
-    "name": "Adam Jones"
-  },
+  "version": "0.1.0",
+  "description": "A Strapi application",
   "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi develop",
     "build": "strapi build",
-    "dev": "strapi develop",
-    "start": "strapi start",
     "strapi": "strapi"
   },
+  "devDependencies": {},
   "dependencies": {
-    "@strapi/plugin-cloud": "4.15.5",
-    "@strapi/plugin-i18n": "4.15.5",
-    "@strapi/plugin-users-permissions": "4.15.5",
-    "@strapi/strapi": "4.15.5",
+    "@strapi/strapi": "4.22.1",
+    "@strapi/plugin-users-permissions": "4.22.1",
+    "@strapi/plugin-i18n": "4.22.1",
+    "@strapi/plugin-cloud": "4.22.1",
     "better-sqlite3": "8.6.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
     "styled-components": "5.3.3"
   },
-  "devDependencies": {},
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "1a87ff7b-dd73-4ae7-9345-c4b1593a9948"
+  },
   "engines": {
     "node": ">=18.0.0 <=20.x.x",
     "npm": ">=6.0.0"
   },
-  "strapi": {
-    "uuid": "6efcc2be-5ddf-4e85-b962-7e701cd65f10"
-  }
+  "license": "MIT"
 }

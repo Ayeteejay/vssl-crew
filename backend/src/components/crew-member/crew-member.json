@@ -1,0 +1,56 @@
+{
+  "collectionName": "components_crew_member_crew_members",
+  "info": {
+    "displayName": "Crew Member",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "about": {
+      "type": "blocks"
+    },
+    "years_served": {
+      "type": "integer"
+    },
+    "primary_profile": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "secondary_profile": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "question_one": {
+      "type": "string"
+    },
+    "question_one_answer": {
+      "type": "text"
+    },
+    "question_two": {
+      "type": "string"
+    },
+    "question_two_answer": {
+      "type": "text"
+    }
+  }
+}

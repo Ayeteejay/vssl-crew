@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_prefooter_prefooters",
+  "info": {
+    "displayName": "Prefooter"
+  },
+  "options": {},
+  "attributes": {
+    "quote": {
+      "type": "string"
+    },
+    "illustration": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "lithograph": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

@@ -12,22 +12,39 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
+    "our_manifesto": {
       "type": "string"
     },
-    "description": {
-      "type": "blocks"
+    "about_vssl": {
+      "type": "text"
     },
-    "image": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+    "main_site": {
+      "type": "component",
+      "repeatable": false,
+      "component": "link.link"
+    },
+    "google_maps": {
+      "type": "component",
+      "repeatable": false,
+      "component": "link.link"
+    },
+    "privacy_policy": {
+      "type": "component",
+      "repeatable": false,
+      "component": "link.link"
+    },
+    "terms_of_use": {
+      "type": "component",
+      "repeatable": false,
+      "component": "link.link"
+    },
+    "contact": {
+      "type": "component",
+      "repeatable": false,
+      "component": "link.link"
+    },
+    "legal": {
+      "type": "string"
     }
   }
 }

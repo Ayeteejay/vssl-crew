@@ -1,13 +1,15 @@
 {
   "name": "vssl-crew",
   "version": "1.0.0",
-  "description": "VSSL Crew site front and backend.",  
+  "description": "VSSL Crew site",  
   "workspaces": [
     "frontend",
     "backend"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"npm start --prefix frontend\" \"npm start --prefix backend\"",
+    "frontend": "npm start --prefix frontend",
+    "backend": "npm start --prefix backend"
   },
   "author": "Adam Jones (Ayeteejay)",
   "license": "ISC",

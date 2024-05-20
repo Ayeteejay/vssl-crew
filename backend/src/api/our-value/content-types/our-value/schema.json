@@ -12,13 +12,33 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
-      "type": "string"
+    "hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "hero.hero"
+    },
+    "prefooter": {
+      "type": "component",
+      "repeatable": false,
+      "component": "prefooter.prefooter"
+    },
+    "intro_content": {
+      "type": "blocks"
     },
     "values": {
       "type": "component",
       "repeatable": true,
-      "component": "cards.cards"
+      "component": "value.value"
+    },
+    "we_are_one_crew_easter_egg": {
+      "type": "component",
+      "repeatable": false,
+      "component": "link.link"
+    },
+    "up_spirits_easter_egg": {
+      "type": "component",
+      "repeatable": false,
+      "component": "link.link"
     }
   }
 }

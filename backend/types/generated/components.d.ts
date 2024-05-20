@@ -1,149 +1,114 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface CardsAboutCard extends Schema.Component {
-  collectionName: 'components_cards_about_cards';
+export interface CrewMemberCrewMember extends Schema.Component {
+  collectionName: 'components_crew_member_crew_members';
   info: {
-    displayName: 'About Cards';
+    displayName: 'Crew Member';
     description: '';
   };
   attributes: {
+    name: Attribute.String;
     title: Attribute.String;
-    description: Attribute.Blocks;
+    about: Attribute.Blocks;
+    years_served: Attribute.Integer;
+    primary_profile: Attribute.Media;
+    secondary_profile: Attribute.Media;
+    question_one: Attribute.String;
+    question_one_answer: Attribute.Text;
+    question_two: Attribute.String;
+    question_two_answer: Attribute.Text;
   };
 }
 
-export interface CardsCards extends Schema.Component {
-  collectionName: 'components_cards_cards';
+export interface HeroHero extends Schema.Component {
+  collectionName: 'components_hero_heroes';
   info: {
-    displayName: 'Value Cards';
+    displayName: 'Hero';
+    icon: 'picture';
+  };
+  attributes: {
+    header: Attribute.String;
+    lithograph: Attribute.Media;
+    illustration: Attribute.Media;
+  };
+}
+
+export interface LinkLink extends Schema.Component {
+  collectionName: 'components_link_links';
+  info: {
+    displayName: 'Link';
     description: '';
   };
   attributes: {
     title: Attribute.String;
-    description: Attribute.Blocks;
+    href: Attribute.String;
+    target: Attribute.String & Attribute.DefaultTo<'_blank'>;
+  };
+}
+
+export interface PageNavigationPageNavigation extends Schema.Component {
+  collectionName: 'components_page_navigation_page_navigations';
+  info: {
+    displayName: 'Page Navigation';
+    description: '';
+  };
+  attributes: {
+    header: Attribute.String;
+    content: Attribute.Blocks;
     image: Attribute.Media;
+    link: Attribute.Component<'link.link'>;
   };
 }
 
-export interface CardsColorCards extends Schema.Component {
-  collectionName: 'components_cards_color_cards';
+export interface PrefooterPrefooter extends Schema.Component {
+  collectionName: 'components_prefooter_prefooters';
   info: {
-    displayName: 'Color Cards';
-    description: '';
+    displayName: 'Prefooter';
   };
   attributes: {
-    title: Attribute.String;
-    hexcode: Attribute.String;
-    rgb: Attribute.String;
-    rgba: Attribute.String;
-    title_color: Attribute.String;
-    background_color: Attribute.String;
-    code_color: Attribute.String;
+    quote: Attribute.String;
+    illustration: Attribute.Media;
+    lithograph: Attribute.Media;
   };
 }
 
-export interface CardsIllustrationCards extends Schema.Component {
-  collectionName: 'components_cards_illustration_cards';
+export interface StatisticStatistic extends Schema.Component {
+  collectionName: 'components_statistic_statistics';
   info: {
-    displayName: 'Illustration Cards';
+    displayName: 'Statistic';
+  };
+  attributes: {
+    subheader: Attribute.String;
+    header: Attribute.String;
+    content: Attribute.Text;
+  };
+}
+
+export interface ValueValue extends Schema.Component {
+  collectionName: 'components_value_values';
+  info: {
+    displayName: 'Value';
     description: '';
   };
   attributes: {
-    label: Attribute.String;
     image: Attribute.Media;
-    width: Attribute.Integer;
-    height: Attribute.Integer;
-  };
-}
-
-export interface CardsLogoCard extends Schema.Component {
-  collectionName: 'components_cards_logo_cards';
-  info: {
-    displayName: 'Logo Cards';
-    description: '';
-  };
-  attributes: {
-    background_color: Attribute.String;
-    image: Attribute.Media;
-  };
-}
-
-export interface CardsPersonaCards extends Schema.Component {
-  collectionName: 'components_cards_persona_cards';
-  info: {
-    displayName: 'Persona Cards';
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-  };
-}
-
-export interface CardsPhotographyCards extends Schema.Component {
-  collectionName: 'components_cards_photography_cards';
-  info: {
-    displayName: 'Photography Cards';
-    description: '';
-  };
-  attributes: {
-    label: Attribute.String;
-    image: Attribute.Media;
-    width: Attribute.Integer;
-    height: Attribute.Integer;
-  };
-}
-
-export interface CardsPositioningCards extends Schema.Component {
-  collectionName: 'components_cards_positioning_cards';
-  info: {
-    displayName: 'Positioning Cards';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Text;
-  };
-}
-
-export interface CardsRuleCards extends Schema.Component {
-  collectionName: 'components_cards_rule_cards';
-  info: {
-    displayName: 'Rule Cards';
-    description: '';
-  };
-  attributes: {
-    label: Attribute.String;
-    image: Attribute.Media;
-    description: Attribute.Text;
-  };
-}
-
-export interface CardsTypographyCards extends Schema.Component {
-  collectionName: 'components_cards_typography_cards';
-  info: {
-    displayName: 'Typography Cards';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String;
-    font_family: Attribute.String;
-    description: Attribute.Text;
+    content: Attribute.Blocks;
+    bullets: Attribute.Blocks;
+    header: Attribute.String;
+    images: Attribute.Media;
   };
 }
 
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'cards.about-card': CardsAboutCard;
-      'cards.cards': CardsCards;
-      'cards.color-cards': CardsColorCards;
-      'cards.illustration-cards': CardsIllustrationCards;
-      'cards.logo-card': CardsLogoCard;
-      'cards.persona-cards': CardsPersonaCards;
-      'cards.photography-cards': CardsPhotographyCards;
-      'cards.positioning-cards': CardsPositioningCards;
-      'cards.rule-cards': CardsRuleCards;
-      'cards.typography-cards': CardsTypographyCards;
+      'crew-member.crew-member': CrewMemberCrewMember;
+      'hero.hero': HeroHero;
+      'link.link': LinkLink;
+      'page-navigation.page-navigation': PageNavigationPageNavigation;
+      'prefooter.prefooter': PrefooterPrefooter;
+      'statistic.statistic': StatisticStatistic;
+      'value.value': ValueValue;
     }
   }
 }

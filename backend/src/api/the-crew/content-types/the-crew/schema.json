@@ -1,0 +1,238 @@
+{
+  "kind": "singleType",
+  "collectionName": "the_crews",
+  "info": {
+    "singularName": "the-crew",
+    "pluralName": "the-crews",
+    "displayName": "The Crew",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "hero.hero"
+    },
+    "intro_content": {
+      "type": "blocks"
+    },
+    "numbers_header": {
+      "type": "string"
+    },
+    "statistic": {
+      "type": "component",
+      "repeatable": true,
+      "component": "statistic.statistic"
+    },
+    "leadership_header": {
+      "type": "string"
+    },
+    "leadership": {
+      "type": "component",
+      "repeatable": true,
+      "component": "crew-member.crew-member"
+    },
+    "client_management_header": {
+      "type": "string"
+    },
+    "client_management_top_left": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "client_management_middle_left": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "client_management_top_right": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "client_management_bottom_right": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "client_management_content": {
+      "type": "blocks"
+    },
+    "client_management": {
+      "type": "component",
+      "repeatable": true,
+      "component": "crew-member.crew-member"
+    },
+    "mops_demand_gen_header": {
+      "type": "string"
+    },
+    "mops_demand_gen_content": {
+      "type": "blocks"
+    },
+    "mops_demand_gen": {
+      "type": "component",
+      "repeatable": true,
+      "component": "crew-member.crew-member"
+    },
+    "tech_header": {
+      "type": "string"
+    },
+    "tech_content": {
+      "type": "blocks"
+    },
+    "technology": {
+      "type": "component",
+      "repeatable": true,
+      "component": "crew-member.crew-member"
+    },
+    "creative_header": {
+      "type": "string"
+    },
+    "creative_content": {
+      "type": "blocks"
+    },
+    "creative_top_left": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "creative_top_right": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "creative_bottom_left": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "creative_bottom_right": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "creative": {
+      "type": "component",
+      "repeatable": true,
+      "component": "crew-member.crew-member"
+    },
+    "accounting_header": {
+      "type": "string"
+    },
+    "accounting_content": {
+      "type": "blocks"
+    },
+    "accounting": {
+      "type": "component",
+      "repeatable": true,
+      "component": "crew-member.crew-member"
+    },
+    "ghost_header": {
+      "type": "string"
+    },
+    "ghost_content": {
+      "type": "blocks"
+    },
+    "ghost": {
+      "type": "component",
+      "repeatable": true,
+      "component": "crew-member.crew-member"
+    },
+    "culture_header": {
+      "type": "string"
+    },
+    "culture_content": {
+      "type": "blocks"
+    },
+    "culture": {
+      "type": "component",
+      "repeatable": true,
+      "component": "crew-member.crew-member"
+    },
+    "prefooter": {
+      "type": "component",
+      "repeatable": false,
+      "component": "prefooter.prefooter"
+    },
+    "leadership_content": {
+      "type": "blocks"
+    },
+    "mops_demand_gen_background": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "creative_background": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "client_management_easter_egg": {
+      "type": "blocks"
+    }
+  }
+}

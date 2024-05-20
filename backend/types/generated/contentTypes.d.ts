@@ -403,9 +403,12 @@ export interface PluginUploadFile extends Schema.CollectionType {
     folderPath: Attribute.String &
       Attribute.Required &
       Attribute.Private &
-      Attribute.SetMinMax<{
-        min: 1;
-      }>;
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -441,9 +444,12 @@ export interface PluginUploadFolder extends Schema.CollectionType {
   attributes: {
     name: Attribute.String &
       Attribute.Required &
-      Attribute.SetMinMax<{
-        min: 1;
-      }>;
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
     pathId: Attribute.Integer & Attribute.Required & Attribute.Unique;
     parent: Attribute.Relation<
       'plugin::upload.folder',
@@ -462,9 +468,12 @@ export interface PluginUploadFolder extends Schema.CollectionType {
     >;
     path: Attribute.String &
       Attribute.Required &
-      Attribute.SetMinMax<{
-        min: 1;
-      }>;
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -482,14 +491,12 @@ export interface PluginUploadFolder extends Schema.CollectionType {
   };
 }
 
-export interface PluginI18NLocale extends Schema.CollectionType {
-  collectionName: 'i18n_locale';
+export interface PluginContentReleasesRelease extends Schema.CollectionType {
+  collectionName: 'strapi_releases';
   info: {
-    singularName: 'locale';
-    pluralName: 'locales';
-    collectionName: 'locales';
-    displayName: 'Locale';
-    description: '';
+    singularName: 'release';
+    pluralName: 'releases';
+    displayName: 'Release';
   };
   options: {
     draftAndPublish: false;
@@ -503,22 +510,79 @@ export interface PluginI18NLocale extends Schema.CollectionType {
     };
   };
   attributes: {
-    name: Attribute.String &
-      Attribute.SetMinMax<{
-        min: 1;
-        max: 50;
-      }>;
-    code: Attribute.String & Attribute.Unique;
+    name: Attribute.String & Attribute.Required;
+    releasedAt: Attribute.DateTime;
+    scheduledAt: Attribute.DateTime;
+    timezone: Attribute.String;
+    status: Attribute.Enumeration<
+      ['ready', 'blocked', 'failed', 'done', 'empty']
+    > &
+      Attribute.Required;
+    actions: Attribute.Relation<
+      'plugin::content-releases.release',
+      'oneToMany',
+      'plugin::content-releases.release-action'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
+      'plugin::content-releases.release',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
+      'plugin::content-releases.release',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginContentReleasesReleaseAction
+  extends Schema.CollectionType {
+  collectionName: 'strapi_release_actions';
+  info: {
+    singularName: 'release-action';
+    pluralName: 'release-actions';
+    displayName: 'Release Action';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    type: Attribute.Enumeration<['publish', 'unpublish']> & Attribute.Required;
+    entry: Attribute.Relation<
+      'plugin::content-releases.release-action',
+      'morphToOne'
+    >;
+    contentType: Attribute.String & Attribute.Required;
+    locale: Attribute.String;
+    release: Attribute.Relation<
+      'plugin::content-releases.release-action',
+      'manyToOne',
+      'plugin::content-releases.release'
+    >;
+    isEntryValid: Attribute.Boolean;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::content-releases.release-action',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::content-releases.release-action',
       'oneToOne',
       'admin::user'
     > &
@@ -677,31 +741,46 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiApplicationApplication extends Schema.SingleType {
-  collectionName: 'applications';
+export interface PluginI18NLocale extends Schema.CollectionType {
+  collectionName: 'i18n_locale';
   info: {
-    singularName: 'application';
-    pluralName: 'applications';
-    displayName: 'Application';
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
   };
   attributes: {
-    title: Attribute.String;
-    meta_description: Attribute.Text;
+    name: Attribute.String &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 50;
+        },
+        number
+      >;
+    code: Attribute.String & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::application.application',
+      'plugin::i18n.locale',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::application.application',
+      'plugin::i18n.locale',
       'oneToOne',
       'admin::user'
     > &
@@ -709,66 +788,46 @@ export interface ApiApplicationApplication extends Schema.SingleType {
   };
 }
 
-export interface ApiBoilerplateBoilerplate extends Schema.SingleType {
-  collectionName: 'boilerplates';
+export interface ApiAboutVsslAboutVssl extends Schema.SingleType {
+  collectionName: 'about_vssls';
   info: {
-    singularName: 'boilerplate';
-    pluralName: 'boilerplates';
-    displayName: 'Boilerplate';
+    singularName: 'about-vssl';
+    pluralName: 'about-vssls';
+    displayName: 'About VSSL';
     description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
-    about: Attribute.Component<'cards.about-card', true>;
+    pitch_header: Attribute.String;
+    pitch_gallery: Attribute.Media;
+    who_header: Attribute.String;
+    coin_header: Attribute.String;
+    prefooter: Attribute.Component<'prefooter.prefooter'>;
+    hero: Attribute.Component<'hero.hero'>;
+    who_image: Attribute.Media;
+    coin_gallery: Attribute.Media;
+    who_content: Attribute.Blocks;
+    pitch_content: Attribute.Blocks;
+    coin_content: Attribute.Blocks;
+    coin_top: Attribute.Media;
+    coin_middle: Attribute.Media;
+    coin_bottom: Attribute.Media;
+    coin_illustration: Attribute.Media;
+    commander_coin: Attribute.Media;
+    client_management_easter_egg: Attribute.Blocks;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::boilerplate.boilerplate',
+      'api::about-vssl.about-vssl',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::boilerplate.boilerplate',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiColorColor extends Schema.SingleType {
-  collectionName: 'colors';
-  info: {
-    singularName: 'color';
-    pluralName: 'colors';
-    displayName: 'Color';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-    primary_colors: Attribute.Component<'cards.color-cards', true>;
-    secondary_colors: Attribute.Component<'cards.color-cards', true>;
-    secondary_title: Attribute.String;
-    secondary_description: Attribute.Blocks;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::color.color',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::color.color',
+      'api::about-vssl.about-vssl',
       'oneToOne',
       'admin::user'
     > &
@@ -788,9 +847,14 @@ export interface ApiFooterFooter extends Schema.SingleType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-    image: Attribute.Media;
+    our_manifesto: Attribute.String;
+    about_vssl: Attribute.Text;
+    main_site: Attribute.Component<'link.link'>;
+    google_maps: Attribute.Component<'link.link'>;
+    privacy_policy: Attribute.Component<'link.link'>;
+    terms_of_use: Attribute.Component<'link.link'>;
+    contact: Attribute.Component<'link.link'>;
+    legal: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -809,89 +873,30 @@ export interface ApiFooterFooter extends Schema.SingleType {
   };
 }
 
-export interface ApiGritGrit extends Schema.SingleType {
-  collectionName: 'grits';
+export interface ApiHeaderHeader extends Schema.SingleType {
+  collectionName: 'headers';
   info: {
-    singularName: 'grit';
-    pluralName: 'grits';
-    displayName: 'Grit';
+    singularName: 'header';
+    pluralName: 'headers';
+    displayName: 'Header';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-    salty: Attribute.String;
-    fish_image: Attribute.Media;
-    fisherman_image: Attribute.Media;
-    cliff_image: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::grit.grit', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::grit.grit', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiHeroHero extends Schema.SingleType {
-  collectionName: 'heroes';
-  info: {
-    singularName: 'hero';
-    pluralName: 'heroes';
-    displayName: 'Hero';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-    salty: Attribute.String;
-    top_right_image: Attribute.Media;
-    bottom_right_image: Attribute.Media;
-    bottom_left_image: Attribute.Media;
-    bottom_middle_image: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::hero.hero', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::hero.hero', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiIllustrationIllustration extends Schema.SingleType {
-  collectionName: 'illustrations';
-  info: {
-    singularName: 'illustration';
-    pluralName: 'illustrations';
-    displayName: 'Illustration';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-    download: Attribute.Media;
-    illustrations: Attribute.Component<'cards.illustration-cards', true>;
+    navigation_link: Attribute.Component<'link.link', true>;
+    logo: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::illustration.illustration',
+      'api::header.header',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::illustration.illustration',
+      'api::header.header',
       'oneToOne',
       'admin::user'
     > &
@@ -899,99 +904,65 @@ export interface ApiIllustrationIllustration extends Schema.SingleType {
   };
 }
 
-export interface ApiLayoutLayout extends Schema.SingleType {
-  collectionName: 'layouts';
+export interface ApiHomeHome extends Schema.SingleType {
+  collectionName: 'homes';
   info: {
-    singularName: 'layout';
-    pluralName: 'layouts';
-    displayName: 'Layout';
+    singularName: 'home';
+    pluralName: 'homes';
+    displayName: 'Home';
     description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-    layout_image: Attribute.Media;
-    layout_image_magnified: Attribute.Media;
+    subheader: Attribute.String;
+    header: Attribute.String;
+    intro_header: Attribute.String;
+    intro_content: Attribute.Blocks;
+    culture_header: Attribute.String;
+    culture_content: Attribute.Blocks;
+    page_navigation: Attribute.Component<
+      'page-navigation.page-navigation',
+      true
+    >;
+    prefooter: Attribute.Component<'prefooter.prefooter'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::layout.layout',
-      'oneToOne',
-      'admin::user'
-    > &
+    createdBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::layout.layout',
-      'oneToOne',
-      'admin::user'
-    > &
+    updatedBy: Attribute.Relation<'api::home.home', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
 
-export interface ApiLogoLogo extends Schema.SingleType {
-  collectionName: 'logos';
+export interface ApiNotFoundNotFound extends Schema.SingleType {
+  collectionName: 'not_founds';
   info: {
-    singularName: 'logo';
-    pluralName: 'logos';
-    displayName: 'Logo';
-    description: '';
+    singularName: 'not-found';
+    pluralName: 'not-founds';
+    displayName: 'Not Found';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    primary_title: Attribute.String;
-    primary_description: Attribute.Blocks;
-    primary_logos: Attribute.Component<'cards.logo-card', true>;
-    simplified_title: Attribute.String;
-    simplified_description: Attribute.Blocks;
-    simplified_logos: Attribute.Component<'cards.logo-card', true>;
-    flag_title: Attribute.String;
-    flag_description: Attribute.Blocks;
-    flag_logos: Attribute.Component<'cards.logo-card', true>;
-    download: Attribute.Media;
-    title: Attribute.String;
-    primary_salty: Attribute.String;
-    simplified_salty: Attribute.String;
-    flag_salty: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::logo.logo', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::logo.logo', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiNavigationNavigation extends Schema.SingleType {
-  collectionName: 'navigations';
-  info: {
-    singularName: 'navigation';
-    pluralName: 'navigations';
-    displayName: 'Navigation';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
+    hero: Attribute.Component<'hero.hero'>;
+    prefooter: Attribute.Component<'prefooter.prefooter'>;
+    link: Attribute.Component<'link.link'>;
     image: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::navigation.navigation',
+      'api::not-found.not-found',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::navigation.navigation',
+      'api::not-found.not-found',
       'oneToOne',
       'admin::user'
     > &
@@ -1011,8 +982,12 @@ export interface ApiOurValueOurValue extends Schema.SingleType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
-    values: Attribute.Component<'cards.cards', true>;
+    hero: Attribute.Component<'hero.hero'>;
+    prefooter: Attribute.Component<'prefooter.prefooter'>;
+    intro_content: Attribute.Blocks;
+    values: Attribute.Component<'value.value', true>;
+    we_are_one_crew_easter_egg: Attribute.Component<'link.link'>;
+    up_spirits_easter_egg: Attribute.Component<'link.link'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1031,233 +1006,69 @@ export interface ApiOurValueOurValue extends Schema.SingleType {
   };
 }
 
-export interface ApiPersonaPersona extends Schema.SingleType {
-  collectionName: 'personas';
+export interface ApiTheCrewTheCrew extends Schema.SingleType {
+  collectionName: 'the_crews';
   info: {
-    singularName: 'persona';
-    pluralName: 'personas';
-    displayName: 'Persona';
+    singularName: 'the-crew';
+    pluralName: 'the-crews';
+    displayName: 'The Crew';
     description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    description: Attribute.Blocks;
-    shipwreck_image: Attribute.Media;
-    captain_image: Attribute.Media;
-    tattooed_image: Attribute.Media;
-    title: Attribute.String;
-    personas: Attribute.Component<'cards.persona-cards', true>;
+    hero: Attribute.Component<'hero.hero'>;
+    intro_content: Attribute.Blocks;
+    numbers_header: Attribute.String;
+    statistic: Attribute.Component<'statistic.statistic', true>;
+    leadership_header: Attribute.String;
+    leadership: Attribute.Component<'crew-member.crew-member', true>;
+    client_management_header: Attribute.String;
+    client_management_top_left: Attribute.Media;
+    client_management_middle_left: Attribute.Media;
+    client_management_top_right: Attribute.Media;
+    client_management_bottom_right: Attribute.Media;
+    client_management_content: Attribute.Blocks;
+    client_management: Attribute.Component<'crew-member.crew-member', true>;
+    mops_demand_gen_header: Attribute.String;
+    mops_demand_gen_content: Attribute.Blocks;
+    mops_demand_gen: Attribute.Component<'crew-member.crew-member', true>;
+    tech_header: Attribute.String;
+    tech_content: Attribute.Blocks;
+    technology: Attribute.Component<'crew-member.crew-member', true>;
+    creative_header: Attribute.String;
+    creative_content: Attribute.Blocks;
+    creative_top_left: Attribute.Media;
+    creative_top_right: Attribute.Media;
+    creative_bottom_left: Attribute.Media;
+    creative_bottom_right: Attribute.Media;
+    creative: Attribute.Component<'crew-member.crew-member', true>;
+    accounting_header: Attribute.String;
+    accounting_content: Attribute.Blocks;
+    accounting: Attribute.Component<'crew-member.crew-member', true>;
+    ghost_header: Attribute.String;
+    ghost_content: Attribute.Blocks;
+    ghost: Attribute.Component<'crew-member.crew-member', true>;
+    culture_header: Attribute.String;
+    culture_content: Attribute.Blocks;
+    culture: Attribute.Component<'crew-member.crew-member', true>;
+    prefooter: Attribute.Component<'prefooter.prefooter'>;
+    leadership_content: Attribute.Blocks;
+    mops_demand_gen_background: Attribute.Media;
+    creative_background: Attribute.Media;
+    client_management_easter_egg: Attribute.Blocks;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::persona.persona',
+      'api::the-crew.the-crew',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::persona.persona',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPhotographyPhotography extends Schema.SingleType {
-  collectionName: 'photographies';
-  info: {
-    singularName: 'photography';
-    pluralName: 'photographies';
-    displayName: 'Photography';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-    download: Attribute.Media;
-    photography: Attribute.Component<'cards.photography-cards', true>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::photography.photography',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::photography.photography',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPositioningPositioning extends Schema.SingleType {
-  collectionName: 'positionings';
-  info: {
-    singularName: 'positioning';
-    pluralName: 'positionings';
-    displayName: 'Positioning';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-    bullets: Attribute.Blocks;
-    positioning: Attribute.Component<'cards.positioning-cards', true>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::positioning.positioning',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::positioning.positioning',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiRuleRule extends Schema.SingleType {
-  collectionName: 'rules';
-  info: {
-    singularName: 'rule';
-    pluralName: 'rules';
-    displayName: 'Rules';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-    rules: Attribute.Component<'cards.rule-cards', true>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::rule.rule', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::rule.rule', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiTextureTexture extends Schema.SingleType {
-  collectionName: 'textures';
-  info: {
-    singularName: 'texture';
-    pluralName: 'textures';
-    displayName: 'Texture';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-    texture_images: Attribute.Media;
-    download: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::texture.texture',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::texture.texture',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiTypographyTypography extends Schema.SingleType {
-  collectionName: 'typographies';
-  info: {
-    singularName: 'typography';
-    pluralName: 'typographies';
-    displayName: 'Typography';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-    typography: Attribute.Component<'cards.typography-cards', true>;
-    download: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::typography.typography',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::typography.typography',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiVoiceVoice extends Schema.SingleType {
-  collectionName: 'voices';
-  info: {
-    singularName: 'voice';
-    pluralName: 'voices';
-    displayName: 'Voice';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-    tone: Attribute.Blocks;
-    background_image: Attribute.Media;
-    portrait_image: Attribute.Media;
-    dog_image: Attribute.Media;
-    boat_image: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::voice.voice',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::voice.voice',
+      'api::the-crew.the-crew',
       'oneToOne',
       'admin::user'
     > &
@@ -1277,28 +1088,19 @@ declare module '@strapi/types' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
-      'plugin::i18n.locale': PluginI18NLocale;
+      'plugin::content-releases.release': PluginContentReleasesRelease;
+      'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::application.application': ApiApplicationApplication;
-      'api::boilerplate.boilerplate': ApiBoilerplateBoilerplate;
-      'api::color.color': ApiColorColor;
+      'plugin::i18n.locale': PluginI18NLocale;
+      'api::about-vssl.about-vssl': ApiAboutVsslAboutVssl;
       'api::footer.footer': ApiFooterFooter;
-      'api::grit.grit': ApiGritGrit;
-      'api::hero.hero': ApiHeroHero;
-      'api::illustration.illustration': ApiIllustrationIllustration;
-      'api::layout.layout': ApiLayoutLayout;
-      'api::logo.logo': ApiLogoLogo;
-      'api::navigation.navigation': ApiNavigationNavigation;
+      'api::header.header': ApiHeaderHeader;
+      'api::home.home': ApiHomeHome;
+      'api::not-found.not-found': ApiNotFoundNotFound;
       'api::our-value.our-value': ApiOurValueOurValue;
-      'api::persona.persona': ApiPersonaPersona;
-      'api::photography.photography': ApiPhotographyPhotography;
-      'api::positioning.positioning': ApiPositioningPositioning;
-      'api::rule.rule': ApiRuleRule;
-      'api::texture.texture': ApiTextureTexture;
-      'api::typography.typography': ApiTypographyTypography;
-      'api::voice.voice': ApiVoiceVoice;
+      'api::the-crew.the-crew': ApiTheCrewTheCrew;
     }
   }
 }

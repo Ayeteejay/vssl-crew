@@ -1,0 +1,135 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_vssls",
+  "info": {
+    "singularName": "about-vssl",
+    "pluralName": "about-vssls",
+    "displayName": "About VSSL",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pitch_header": {
+      "type": "string"
+    },
+    "pitch_gallery": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "who_header": {
+      "type": "string"
+    },
+    "coin_header": {
+      "type": "string"
+    },
+    "prefooter": {
+      "type": "component",
+      "repeatable": false,
+      "component": "prefooter.prefooter"
+    },
+    "hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "hero.hero"
+    },
+    "who_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "coin_gallery": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "who_content": {
+      "type": "blocks"
+    },
+    "pitch_content": {
+      "type": "blocks"
+    },
+    "coin_content": {
+      "type": "blocks"
+    },
+    "coin_top": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "coin_middle": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "coin_bottom": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "coin_illustration": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "commander_coin": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "client_management_easter_egg": {
+      "type": "blocks"
+    }
+  }
+}
