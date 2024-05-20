@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "boilerplates",
+  "info": {
+    "singularName": "boilerplate",
+    "pluralName": "boilerplates",
+    "displayName": "Boilerplate",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "about": {
+      "type": "component",
+      "repeatable": true,
+      "component": "cards.about-card"
+    }
+  }
+}

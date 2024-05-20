@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_cards_positioning_cards",
+  "info": {
+    "displayName": "Positioning Cards",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

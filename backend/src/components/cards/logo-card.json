@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_cards_logo_cards",
+  "info": {
+    "displayName": "Logo Cards",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "background_color": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

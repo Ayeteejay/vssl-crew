@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "rift";
+  src: url("https://use.typekit.net/af/af021d/00000000000000007735b21d/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"), url("https://use.typekit.net/af/af021d/00000000000000007735b21d/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"), url("https://use.typekit.net/af/af021d/00000000000000007735b21d/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "rift";
+  src: url("https://use.typekit.net/af/ede55a/00000000000000007735b228/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"), url("https://use.typekit.net/af/ede55a/00000000000000007735b228/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff"), url("https://use.typekit.net/af/ede55a/00000000000000007735b228/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "elza";
+  src: url("https://use.typekit.net/af/d053a5/00000000000000007735f93a/30/l?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n7&v=3") format("woff2"), url("https://use.typekit.net/af/d053a5/00000000000000007735f93a/30/d?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n7&v=3") format("woff"), url("https://use.typekit.net/af/d053a5/00000000000000007735f93a/30/a?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n7&v=3") format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "elza";
+  src: url("https://use.typekit.net/af/fe1dfd/00000000000000007735f93e/30/l?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n3&v=3") format("woff2"), url("https://use.typekit.net/af/fe1dfd/00000000000000007735f93e/30/d?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n3&v=3") format("woff"), url("https://use.typekit.net/af/fe1dfd/00000000000000007735f93e/30/a?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n3&v=3") format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 300;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "elza";
+  src: url("https://use.typekit.net/af/9b4894/00000000000000007735f938/30/l?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n4&v=3") format("woff2"), url("https://use.typekit.net/af/9b4894/00000000000000007735f938/30/d?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n4&v=3") format("woff"), url("https://use.typekit.net/af/9b4894/00000000000000007735f938/30/a?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n4&v=3") format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "elza";
+  src: url("https://use.typekit.net/af/aa2b05/00000000000000007735f937/30/l?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n5&v=3") format("woff2"), url("https://use.typekit.net/af/aa2b05/00000000000000007735f937/30/d?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n5&v=3") format("woff"), url("https://use.typekit.net/af/aa2b05/00000000000000007735f937/30/a?primer=7fa3915bdafdf03041871920a205bef951d72bf64dd4c4460fb992e3ecc3a862&fvd=n5&v=3") format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: normal;
+}
+
+@layer components{
+  .container{    
+    @apply max-w-screen-xl mx-auto pt-16 pl-10 pr-10 md:pt-0 md:pl-20 xl:pl-10 xl:pr-0;
+  }
+  .text-link{
+    @apply transition-all duration-300 hover:text-bronze;
+  }
+}
+
+.rift{
+  font-family:"rift", sans-serif;
+}
+
+.elza{
+  font-family:"elza", sans-serif;
+}
+
+.wilson-wells{
+  font-family: var(--font-wilson-wells);
+}
+
+.gin-lines{
+  font-family:var(--font-gin-lines);
+}
+
+.gin-regular{
+  font-family: var(--font-gin-regular);
+}
+
+.header-logo-link path{
+  transition:all 300ms;
+}
+.header-logo-link:hover svg path{
+  fill:#fff;
+}
+
+/* Start CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+#root,
+#__next {
+  isolation: isolate;
+}
+/* End CSS Reset */

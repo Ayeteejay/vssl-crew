@@ -1,0 +1,72 @@
+{
+  "kind": "singleType",
+  "collectionName": "logos",
+  "info": {
+    "singularName": "logo",
+    "pluralName": "logos",
+    "displayName": "Logo",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "primary_title": {
+      "type": "string"
+    },
+    "primary_description": {
+      "type": "blocks"
+    },
+    "primary_logos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "cards.logo-card"
+    },
+    "simplified_title": {
+      "type": "string"
+    },
+    "simplified_description": {
+      "type": "blocks"
+    },
+    "simplified_logos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "cards.logo-card"
+    },
+    "flag_title": {
+      "type": "string"
+    },
+    "flag_description": {
+      "type": "blocks"
+    },
+    "flag_logos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "cards.logo-card"
+    },
+    "download": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "primary_salty": {
+      "type": "string"
+    },
+    "simplified_salty": {
+      "type": "string"
+    },
+    "flag_salty": {
+      "type": "string"
+    }
+  }
+}

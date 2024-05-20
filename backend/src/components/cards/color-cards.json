@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_cards_color_cards",
+  "info": {
+    "displayName": "Color Cards",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "hexcode": {
+      "type": "string"
+    },
+    "rgb": {
+      "type": "string"
+    },
+    "rgba": {
+      "type": "string"
+    },
+    "title_color": {
+      "type": "string"
+    },
+    "background_color": {
+      "type": "string"
+    },
+    "code_color": {
+      "type": "string"
+    }
+  }
+}

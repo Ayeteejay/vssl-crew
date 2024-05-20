@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "colors",
+  "info": {
+    "singularName": "color",
+    "pluralName": "colors",
+    "displayName": "Color"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "primary_colors": {
+      "type": "component",
+      "repeatable": true,
+      "component": "cards.color-cards"
+    },
+    "secondary_colors": {
+      "type": "component",
+      "repeatable": true,
+      "component": "cards.color-cards"
+    },
+    "secondary_title": {
+      "type": "string"
+    },
+    "secondary_description": {
+      "type": "blocks"
+    }
+  }
+}

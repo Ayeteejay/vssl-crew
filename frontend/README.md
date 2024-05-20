@@ -1,0 +1,1 @@
+<p>Copyright &#169;2024, <a href="https://ayeteejay.com" target="_blank">Adam Jones</a>.</p>

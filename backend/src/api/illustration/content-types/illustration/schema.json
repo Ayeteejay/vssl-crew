@@ -1,0 +1,38 @@
+{
+  "kind": "singleType",
+  "collectionName": "illustrations",
+  "info": {
+    "singularName": "illustration",
+    "pluralName": "illustrations",
+    "displayName": "Illustration",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "download": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "illustrations": {
+      "type": "component",
+      "repeatable": true,
+      "component": "cards.illustration-cards"
+    }
+  }
+}

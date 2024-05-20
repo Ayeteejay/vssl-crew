@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_cards_about_cards",
+  "info": {
+    "displayName": "About Cards",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    }
+  }
+}

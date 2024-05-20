@@ -1,0 +1,38 @@
+{
+  "kind": "singleType",
+  "collectionName": "photographies",
+  "info": {
+    "singularName": "photography",
+    "pluralName": "photographies",
+    "displayName": "Photography",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "download": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "photography": {
+      "type": "component",
+      "repeatable": true,
+      "component": "cards.photography-cards"
+    }
+  }
+}

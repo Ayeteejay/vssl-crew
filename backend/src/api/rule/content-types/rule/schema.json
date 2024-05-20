@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "rules",
+  "info": {
+    "singularName": "rule",
+    "pluralName": "rules",
+    "displayName": "Rules",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "rules": {
+      "type": "component",
+      "repeatable": true,
+      "component": "cards.rule-cards"
+    }
+  }
+}

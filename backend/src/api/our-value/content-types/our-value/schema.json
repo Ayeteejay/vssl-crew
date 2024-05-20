@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "our_values",
+  "info": {
+    "singularName": "our-value",
+    "pluralName": "our-values",
+    "displayName": "Our Values",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "values": {
+      "type": "component",
+      "repeatable": true,
+      "component": "cards.cards"
+    }
+  }
+}

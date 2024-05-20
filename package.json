@@ -1,0 +1,17 @@
+{
+  "name": "vssl-crew",
+  "version": "1.0.0",
+  "description": "VSSL Crew site front and backend.",  
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adam Jones (Ayeteejay)",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

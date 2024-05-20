@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_cards_typography_cards",
+  "info": {
+    "displayName": "Typography Cards",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "font_family": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
