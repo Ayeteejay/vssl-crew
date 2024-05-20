@@ -2,10 +2,10 @@
   "name": "vssl-crew-backend",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "Backend for VSSL Crew site",
   "scripts": {
     "develop": "strapi develop",
-    "start": "strapi develop",
+    "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi"
   },
@@ -22,7 +22,7 @@
     "styled-components": "5.3.3"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "Adam Jones"
   },
   "strapi": {
     "uuid": "1a87ff7b-dd73-4ae7-9345-c4b1593a9948"
